@@ -1,9 +1,720 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<title>Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#EF9F27">
+<title>Aquiner — Votre visite technique offerte en Gironde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     META PIXEL — AQUINER
+     1. Allez sur business.facebook.com → Events Manager
+     2. Créez un Pixel → copiez votre Pixel ID (ex: 1234567890)
+     3. Remplacez VOTRE_PIXEL_ID ci-dessous par votre vrai ID
+     ============================================================ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'VOTRE_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=VOTRE_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sun: #EF9F27;
+  --sun-dark: #BA7517;
+  --sun-deep: #854F0B;
+  --sun-pale: #FDF3E3;
+  --ink: #1C1A14;
+  --ink-muted: #5F5E5A;
+  --ink-faint: #B4B2A9;
+  --paper: #FDFBF7;
+  --paper-warm: #F7F3EC;
+  --white: #FFFFFF;
+  --radius: 14px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 70% -10%, rgba(239,159,39,0.11) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at -10% 80%, rgba(24,95,165,0.06) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+
+.page { position: relative; z-index: 1; }
+
+/* ── HEADER ── */
+header {
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--ink); letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+.logo span { color: var(--sun); }
+
+.logo-tag {
+  font-size: 10px; color: var(--ink-muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-left: 8px; padding-left: 8px;
+  border-left: 1px solid var(--ink-faint);
+}
+
+.header-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--sun-pale);
+  border: 1px solid rgba(186,117,23,0.2);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px; color: var(--sun-deep); font-weight: 500;
+}
+.header-badge::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--sun);
+  animation: pulse 2s infinite; flex-shrink: 0;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.8)}
+}
+
+/* ── MAIN — mobile first, 1 colonne ── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── COPY ── */
+.copy { text-align: center; }
+
+.eyebrow {
+  display: inline-flex; align-items: center;
+  justify-content: center; gap: 10px;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sun-deep); margin-bottom: 1.2rem;
+}
+.eyebrow-line { width: 20px; height: 1px; background: var(--sun); }
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 10vw, 64px);
+  font-weight: 500; line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 1rem;
+}
+h1 em { font-style: italic; font-weight: 300; color: var(--sun-dark); }
+
+.lead {
+  font-size: 15px; line-height: 1.75;
+  color: var(--ink-muted);
+  max-width: 480px; margin: 0 auto 1.8rem;
+  font-weight: 300;
+}
+
+/* ── AIDES ── */
+.aides-title {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.aides {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-bottom: 2rem;
+}
+
+.aide {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  display: flex; gap: 10px; align-items: flex-start;
+  text-align: left;
+  transition: border-color .2s, transform .2s;
+}
+.aide:active { transform: scale(0.98); }
+
+.aide-icon {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: var(--sun-pale);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 14px; color: var(--sun-dark);
+}
+.aide-name { font-size: 10px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
+.aide-amount {
+  font-size: 14px; font-weight: 500; color: var(--sun-deep);
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: -0.01em; line-height: 1.2;
+}
+.aide-desc { font-size: 10px; color: var(--ink-muted); margin-top: 2px; line-height: 1.35; }
+
+/* ── PROOF AVEC VRAIES PHOTOS ── */
+.proof {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.proof-avatars {
+  display: flex; align-items: center; justify-content: center;
+}
+
+.avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--paper);
+  overflow: hidden;
+  margin-left: -13px;
+  flex-shrink: 0;
+  background: var(--paper-warm);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.avatar:first-child { margin-left: 0; }
+.avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+
+.avatar-count {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--paper);
+  background: var(--sun-pale);
+  margin-left: -13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--sun-deep);
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.proof-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap;
+}
+.proof-stars { color: var(--sun); font-size: 14px; letter-spacing: 1px; }
+.proof-text { font-size: 13px; color: var(--ink-muted); }
+.proof-text strong { color: var(--ink); font-weight: 500; }
+.proof-sep { width: 1px; height: 14px; background: var(--ink-faint); }
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 22px;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp .7s .15s forwards;
+}
+
+.form-top {
+  background: linear-gradient(135deg, var(--sun) 0%, #F5B830 100%);
+  border-radius: 12px;
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1.4rem;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.form-top::after {
+  content: '☀'; position: absolute;
+  right: -6px; top: -10px;
+  font-size: 65px; opacity: .13; line-height: 1;
+}
+.form-top-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(65,36,2,.6); margin-bottom: 4px;
+}
+.form-top-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--ink); line-height: 1.2;
+}
+.form-top-sub { font-size: 12px; color: rgba(65,36,2,.6); margin-top: 4px; font-weight: 300; }
+
+.form-group { margin-bottom: 0.85rem; }
+
+label {
+  display: block; font-size: 11px; font-weight: 500;
+  color: var(--ink-muted); margin-bottom: 5px;
+  letter-spacing: .03em; text-transform: uppercase;
+}
+
+input, select {
+  width: 100%; height: 48px;
+  background: var(--paper-warm);
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 16px; /* 16px évite le zoom iOS */
+  color: var(--ink);
+  padding: 0 14px; outline: none;
+  transition: border-color .2s, background .2s;
+  appearance: none; -webkit-appearance: none;
+}
+input::placeholder { color: var(--ink-faint); }
+input:focus, select:focus { border-color: var(--sun); background: var(--white); }
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 36px; cursor: pointer;
+}
+
+.radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.radio-option { position: relative; }
+.radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.radio-option label {
+  display: flex; align-items: center; justify-content: center;
+  height: 44px;
+  background: var(--paper-warm);
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  font-size: 13px; color: var(--ink-muted);
+  cursor: pointer; transition: all .15s;
+  font-weight: 400; gap: 5px;
+  margin: 0; letter-spacing: 0; text-transform: none;
+}
+.radio-option input[type="radio"]:checked + label {
+  background: var(--sun-pale);
+  border-color: var(--sun);
+  color: var(--sun-deep); font-weight: 500;
+}
+
+.submit-btn {
+  width: 100%; height: 54px;
+  background: var(--ink); color: var(--white);
+  border: none; border-radius: 12px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px; font-weight: 500;
+  cursor: pointer; margin-top: 1rem;
+  transition: transform .15s, background .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.submit-btn:active { transform: scale(0.98); background: var(--sun-deep); }
+
+.form-reassurance {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 10px;
+  font-size: 12px; color: var(--ink-faint);
+}
+
+.diffs {
+  display: flex; flex-direction: column; gap: 7px;
+  margin-top: 1.3rem; padding-top: 1.2rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.diff {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13px; color: var(--ink-muted);
+}
+.diff-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #EAF3DE; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #3B6D11;
+}
+
+/* ── SUCCESS ── */
+.success-screen { display: none; text-align: center; padding: 1.5rem 0; }
+.success-icon {
+  width: 68px; height: 68px; background: var(--sun-pale);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem; font-size: 30px;
+}
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem;
+}
+.success-text { font-size: 14px; color: var(--ink-muted); line-height: 1.7; }
+
+/* ── FOOTER ── */
+.footer-note {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 1.25rem 2.5rem;
+  font-size: 10px; color: var(--ink-faint); line-height: 1.6;
+  text-align: center;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0; transform: translateY(14px);
+  animation: fadeUp .55s forwards;
+}
+.fade-up:nth-child(1){animation-delay:.05s}
+.fade-up:nth-child(2){animation-delay:.12s}
+.fade-up:nth-child(3){animation-delay:.2s}
+.fade-up:nth-child(4){animation-delay:.28s}
+.fade-up:nth-child(5){animation-delay:.36s}
+@keyframes fadeUp { to { opacity:1; transform:none; } }
+
+/* ── DESKTOP : 2 colonnes ── */
+@media (min-width: 820px) {
+  main {
+    flex-direction: row;
+    gap: 5rem;
+    padding: 2rem 2rem 4rem;
+    align-items: start;
+  }
+  .copy { flex: 1; padding-top: 1rem; }
+  .form-card { width: 420px; flex-shrink: 0; position: sticky; top: 2rem; }
+  .submit-btn:hover { background: var(--sun-deep); transform: translateY(-1px); }
+  .aide:hover { border-color: rgba(239,159,39,.4); transform: translateY(-1px); }
+  header { padding: 1.5rem 2rem; }
+  .footer-note { padding: 0 2rem 3rem; }
+}
+
+/* ── Très petits écrans ── */
+@media (max-width: 380px) {
+  .aides { grid-template-columns: 1fr; }
+  .input-row { grid-template-columns: 1fr; }
+  .logo-tag { display: none; }
+}
+</style>
 </head>
 <body>
-<p>Test</p>
+<div class="page">
+
+  <header>
+    <div style="display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;">
+      <div class="logo">aqui<span>ner</span></div>
+      <span class="logo-tag">Gironde · Nouvelle-Aquitaine</span>
+    </div>
+    <div class="header-badge">Places limitées</div>
+  </header>
+
+  <main>
+
+    <!-- COPY -->
+    <div class="copy">
+
+      <div class="eyebrow fade-up">
+        <span class="eyebrow-line"></span>
+        Installateur photovoltaïque local
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <h1 class="fade-up">
+        Passez au solaire<br>
+        en <em>toute confiance</em><br>
+        en Gironde
+      </h1>
+
+      <p class="lead fade-up">
+        Vous parlez directement au responsable — pas à un commercial.
+        Une équipe d'ici, qui connaît votre territoire et monte vos dossiers d'aides avec vous.
+        Travail dans les règles de l'art, garanti.
+      </p>
+
+      <div class="fade-up">
+        <p class="aides-title">Aides financières disponibles</p>
+        <div class="aides">
+          <div class="aide">
+            <div class="aide-icon">€</div>
+            <div>
+              <div class="aide-name">Éco-PTZ</div>
+              <div class="aide-amount">jusqu'à 15 000 €</div>
+              <div class="aide-desc">Prêt à taux zéro, sans intérêts</div>
+            </div>
+          </div>
+          <div class="aide">
+            <div class="aide-icon">☀</div>
+            <div>
+              <div class="aide-name">Prime autoconsommation</div>
+              <div class="aide-amount">80 à 350 €/kWc</div>
+              <div class="aide-desc">Versée sur 5 ans · RGE requis</div>
+            </div>
+          </div>
+          <div class="aide">
+            <div class="aide-icon">⌂</div>
+            <div>
+              <div class="aide-name">Bordeaux Métropole</div>
+              <div class="aide-amount">jusqu'à 2 500 €</div>
+              <div class="aide-desc">20 % du devis · 28 communes</div>
+            </div>
+          </div>
+          <div class="aide">
+            <div class="aide-icon">↺</div>
+            <div>
+              <div class="aide-name">Rachat EDF OA</div>
+              <div class="aide-amount">20 ans garantis</div>
+              <div class="aide-desc">Tarif de rachat fixe sur surplus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROOF — vraies photos Unsplash (visages neutres, familles) -->
+      <div class="proof fade-up">
+        <div class="proof-avatars">
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
+          </div>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
+          </div>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
+          </div>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
+          </div>
+          <div class="avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
+          </div>
+          <div class="avatar-count">+42</div>
+        </div>
+        <div class="proof-row">
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-text"><strong>47 familles</strong> accompagnées en Gironde</div>
+          <div class="proof-sep"></div>
+          <div class="proof-text">Réponse sous <strong>24h</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div class="form-card">
+      <div id="form-content">
+        <div class="form-top">
+          <div class="form-top-label">Offre gratuite</div>
+          <div class="form-top-title">Votre visite technique<br>offerte à domicile</div>
+          <div class="form-top-sub">Sans engagement · Par un professionnel Aquiner</div>
+        </div>
+
+        <form id="capture-form" novalidate>
+          <div class="input-row">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Jean" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Dupont" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" required autocomplete="tel" inputmode="tel">
+          </div>
+
+          <div class="form-group">
+            <label for="commune">Votre secteur</label>
+            <select id="commune" name="commune" required>
+              <option value="" disabled selected>Sélectionnez votre secteur</option>
+              <option>Bordeaux et Bordeaux Métropole</option>
+              <option>Bassin d'Arcachon</option>
+              <option>Libourne et Saint-Émilion</option>
+              <option>Blaye et Médoc</option>
+              <option>Langon et Entre-Deux-Mers</option>
+              <option>Autre commune de Gironde</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Vous êtes</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="prop" name="statut" value="Propriétaire" checked>
+                <label for="prop">⌂ Propriétaire</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="bailleur" name="statut" value="Bailleur">
+                <label for="bailleur">⚿ Bailleur</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Type de toiture</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="tuiles" name="toiture" value="Tuiles" checked>
+                <label for="tuiles">Tuiles</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="ardoise" name="toiture" value="Ardoise">
+                <label for="ardoise">Ardoise</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="bac" name="toiture" value="Bac acier">
+                <label for="bac">Bac acier</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="autre-toit" name="toiture" value="Autre">
+                <label for="autre-toit">Autre</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            Je veux ma visite technique offerte →
+          </button>
+        </form>
+
+        <div class="form-reassurance">
+          <svg width="11" height="13" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x=".5" y="5.5" width="11" height="8" rx="1.5" stroke="#B4B2A9"/>
+            <path d="M3 5V4a3 3 0 016 0v1" stroke="#B4B2A9" stroke-linecap="round"/>
+          </svg>
+          Aucun démarchage · Données confidentielles
+        </div>
+
+        <div class="diffs">
+          <div class="diff"><div class="diff-dot">✓</div>Vous parlez directement au responsable, pas à un commercial</div>
+          <div class="diff"><div class="diff-dot">✓</div>On monte vos dossiers d'aides avec vous — gratuitement</div>
+          <div class="diff"><div class="diff-dot">✓</div>Artisans locaux certifiés RGE, travail dans les règles de l'art</div>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-screen" id="success-screen">
+        <div class="success-icon">☀</div>
+        <div class="success-title">C'est noté, merci !</div>
+        <p class="success-text">
+          Un responsable Aquiner vous contacte<br>
+          <strong>sous 24 heures</strong> pour organiser<br>
+          votre visite technique gratuite.
+        </p>
+        <div style="margin-top:1.3rem;padding:1rem;background:var(--sun-pale);border-radius:12px;font-size:13px;color:var(--sun-deep);line-height:1.6;">
+          En attendant, préparez une photo de votre toiture — cela nous permettra de préparer votre étude avant la visite.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer-note">
+    Aquiner · Installateur photovoltaïque en Gironde, Nouvelle-Aquitaine · Certifié RGE ·
+    Les montants des aides sont indicatifs et soumis à conditions d'éligibilité.
+    Visite technique offerte sans engagement sous réserve de disponibilité.
+  </footer>
+
+</div>
+
+<script>
+// Notifications email via Make.com → Resend
+
+// Webhook Make.com → Resend (clé API côté serveur, jamais exposée)
+const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uf4xe5h37p8wl14tb69mcktgp2ra6no4';
+
+async function envoyerLead(data) {
+  try {
+    const res = await fetch(MAKE_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom:    data.prenom,
+        nom:       data.nom,
+        telephone: data.telephone,
+        commune:   data.commune,
+        statut:    data.statut,
+        toiture:   data.toiture,
+        date:      new Date().toLocaleString('fr-FR'),
+        destinataire: 'c.steffenwilfried@gmail.com'
+      })
+    });
+    if (!res.ok) console.warn('Make webhook error:', await res.text());
+  } catch(err) {
+    console.warn('Email non envoyé (silencieux):', err);
+  }
+}
+
+function firePixelLead() {
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+}
+
+document.getElementById('capture-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('submit-btn');
+  const prenom = document.getElementById('prenom').value.trim();
+  const nom    = document.getElementById('nom').value.trim();
+  const tel    = document.getElementById('telephone').value.trim();
+  const commune = document.getElementById('commune').value;
+  const statut  = document.querySelector('input[name="statut"]:checked')?.value || '';
+  const toiture = document.querySelector('input[name="toiture"]:checked')?.value || '';
+
+  const manquants = [
+    !prenom  && document.getElementById('prenom'),
+    !nom     && document.getElementById('nom'),
+    !tel     && document.getElementById('telephone'),
+    !commune && document.getElementById('commune'),
+  ].filter(Boolean);
+
+  if (manquants.length) {
+    manquants.forEach(el => {
+      el.style.borderColor = '#E24B4A';
+      el.style.background  = '#FFF5F5';
+      el.addEventListener('input', () => {
+        el.style.borderColor = '';
+        el.style.background  = '';
+      }, { once: true });
+    });
+    manquants[0].focus();
+    return;
+  }
+
+  btn.textContent = 'Envoi en cours…';
+  btn.style.opacity = '0.65';
+  btn.disabled = true;
+
+  await envoyerLead({ prenom, nom, telephone: tel, commune, statut, toiture });
+  firePixelLead();
+
+  document.getElementById('form-content').style.display = 'none';
+  const s = document.getElementById('success-screen');
+  s.style.display = 'block';
+  s.style.opacity = 0;
+  s.style.transform = 'translateY(10px)';
+  s.style.transition = 'all .4s ease';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { s.style.opacity = 1; s.style.transform = 'none'; });
+  });
+});
+</script>
 </body>
 </html>
