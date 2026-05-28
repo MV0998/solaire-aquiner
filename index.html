@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#EF9F27">
-<title>Aquiner — Votre visite technique offerte en Gironde</title>
+<meta name="theme-color" content="#0A0A0A">
+<meta name="description" content="Aquiner — Installateur photovoltaïque en Gironde. Visite technique offerte, sans engagement.">
+<title>Aquiner — Visite technique offerte en Gironde</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
 <!-- Meta Pixel Code -->
 <script>
@@ -32,519 +33,763 @@ src="https://www.facebook.com/tr?id=1650950786025953&ev=PageView&noscript=1"/>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --sun: #EF9F27;
-  --sun-dark: #BA7517;
-  --sun-deep: #854F0B;
-  --sun-pale: #FDF3E3;
-  --ink: #1C1A14;
-  --ink-muted: #5F5E5A;
-  --ink-faint: #B4B2A9;
-  --paper: #FDFBF7;
-  --paper-warm: #F7F3EC;
-  --white: #FFFFFF;
-  --radius: 14px;
+  --gold:       #C9963A;
+  --gold-light: #E8B865;
+  --gold-pale:  #FAF3E7;
+  --gold-deep:  #8A6020;
+  --noir:       #0A0A0A;
+  --noir-soft:  #1A1A1A;
+  --gris:       #6B6B6B;
+  --gris-light: #A8A8A8;
+  --border:     #E8E4DC;
+  --paper:      #FAFAF8;
+  --white:      #FFFFFF;
+  --input-bg:   #F4F2EE;
+  --success:    #2D5A27;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--paper);
-  color: var(--ink);
-  min-height: 100vh;
+  color: var(--noir);
+  min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
+/* Grain texture subtil */
 body::before {
   content: '';
-  position: fixed; inset: 0;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 70% -10%, rgba(239,159,39,0.11) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at -10% 80%, rgba(24,95,165,0.06) 0%, transparent 50%);
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .5;
+}
+
+/* Halo doré en haut */
+body::after {
+  content: '';
+  position: fixed;
+  top: -30vh; left: 50%;
+  transform: translateX(-50%);
+  width: 140vw; height: 60vh;
+  background: radial-gradient(ellipse, rgba(201,150,58,0.08) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 
 .page { position: relative; z-index: 1; }
 
-/* ── HEADER ── */
+/* ══ BARRE SUPÉRIEURE ══ */
+.topbar {
+  background: var(--noir);
+  padding: 9px 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.topbar-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes blink {
+  0%,100%{opacity:1} 50%{opacity:.3}
+}
+.topbar-text {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+  font-weight: 300;
+}
+.topbar-text strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+/* ══ HEADER ══ */
 header {
-  padding: 1.1rem 1.25rem;
+  padding: 1.2rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
+  border-bottom: 1px solid var(--border);
 }
 
 .logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 600;
-  color: var(--ink); letter-spacing: 0.04em;
-  text-transform: lowercase;
-}
-.logo span { color: var(--sun); }
-
-.logo-tag {
-  font-size: 10px; color: var(--ink-muted);
-  letter-spacing: 0.08em; text-transform: uppercase;
-  margin-left: 8px; padding-left: 8px;
-  border-left: 1px solid var(--ink-faint);
-}
-
-.header-badge {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--sun-pale);
-  border: 1px solid rgba(186,117,23,0.2);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 11px; color: var(--sun-deep); font-weight: 500;
-}
-.header-badge::before {
-  content: ''; width: 6px; height: 6px;
-  border-radius: 50%; background: var(--sun);
-  animation: pulse 2s infinite; flex-shrink: 0;
-}
-@keyframes pulse {
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.5;transform:scale(.8)}
-}
-
-/* ── MAIN — mobile first, 1 colonne ── */
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--noir);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  gap: 8px;
+}
+.logo-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
 }
 
-/* ── COPY ── */
-.copy { text-align: center; }
-
-.eyebrow {
-  display: inline-flex; align-items: center;
-  justify-content: center; gap: 10px;
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--sun-deep); margin-bottom: 1.2rem;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--gris);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 400;
 }
-.eyebrow-line { width: 20px; height: 1px; background: var(--sun); }
-
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 10vw, 64px);
-  font-weight: 500; line-height: 1.05;
-  letter-spacing: -0.01em;
-  color: var(--ink); margin-bottom: 1rem;
-}
-h1 em { font-style: italic; font-weight: 300; color: var(--sun-dark); }
-
-.lead {
-  font-size: 15px; line-height: 1.75;
-  color: var(--ink-muted);
-  max-width: 480px; margin: 0 auto 1.8rem;
-  font-weight: 300;
+.header-rgе {
+  background: var(--gold-pale);
+  border: 1px solid rgba(201,150,58,0.25);
+  color: var(--gold-deep);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
-/* ── AIDES ── */
-.aides-title {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-faint); margin-bottom: 0.75rem;
+/* ══ HERO ══ */
+.hero {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2rem;
   text-align: center;
 }
 
-.aides {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px; margin-bottom: 2rem;
+.hero-region {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.6rem;
+}
+.hero-region-line {
+  width: 28px; height: 0.5px;
+  background: var(--gold);
+  opacity: 0.6;
 }
 
-.aide {
-  background: var(--white);
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: var(--radius);
-  padding: 0.9rem 1rem;
-  display: flex; gap: 10px; align-items: flex-start;
-  text-align: left;
-  transition: border-color .2s, transform .2s;
-}
-.aide:active { transform: scale(0.98); }
-
-.aide-icon {
-  width: 30px; height: 30px; border-radius: 7px;
-  background: var(--sun-pale);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-size: 14px; color: var(--sun-dark);
-}
-.aide-name { font-size: 10px; font-weight: 500; color: var(--ink); margin-bottom: 1px; }
-.aide-amount {
-  font-size: 14px; font-weight: 500; color: var(--sun-deep);
+.hero-title {
   font-family: 'Cormorant Garamond', serif;
-  letter-spacing: -0.01em; line-height: 1.2;
+  font-size: clamp(44px, 12vw, 72px);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--noir);
+  margin-bottom: 1.4rem;
 }
-.aide-desc { font-size: 10px; color: var(--ink-muted); margin-top: 2px; line-height: 1.35; }
-
-/* ── PROOF AVEC VRAIES PHOTOS ── */
-.proof {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 10px;
-  margin-bottom: 0.5rem;
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
 }
 
-.proof-avatars {
-  display: flex; align-items: center; justify-content: center;
+.hero-sub {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gris);
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  letter-spacing: 0.01em;
 }
 
-.avatar {
-  width: 44px; height: 44px;
+/* ══ PROOF ══ */
+.proof-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2.5rem;
+}
+
+.proof-faces {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face {
+  width: 42px; height: 42px;
   border-radius: 50%;
-  border: 3px solid var(--paper);
+  border: 2.5px solid var(--paper);
   overflow: hidden;
-  margin-left: -13px;
+  margin-left: -11px;
   flex-shrink: 0;
-  background: var(--paper-warm);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
-.avatar:first-child { margin-left: 0; }
-.avatar img {
+.face:first-child { margin-left: 0; }
+.face img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center top;
   display: block;
 }
 
-.avatar-count {
-  width: 44px; height: 44px;
+.face-more {
+  width: 42px; height: 42px;
   border-radius: 50%;
-  border: 3px solid var(--paper);
-  background: var(--sun-pale);
-  margin-left: -13px;
+  border: 2.5px solid var(--paper);
+  background: var(--gold-pale);
+  margin-left: -11px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600; color: var(--sun-deep);
-  flex-shrink: 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 10px; font-weight: 600; color: var(--gold-deep);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.proof-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 10px; flex-wrap: wrap;
+.proof-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-.proof-stars { color: var(--sun); font-size: 14px; letter-spacing: 1px; }
-.proof-text { font-size: 13px; color: var(--ink-muted); }
-.proof-text strong { color: var(--ink); font-weight: 500; }
-.proof-sep { width: 1px; height: 14px; background: var(--ink-faint); }
+.proof-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+.proof-label { font-size: 13px; color: var(--gris); font-weight: 300; }
+.proof-label strong { color: var(--noir); font-weight: 500; }
+.proof-pipe { width: 1px; height: 12px; background: var(--border); }
 
-/* ── FORM CARD ── */
-.form-card {
-  background: var(--white);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 22px;
-  padding: 1.6rem 1.4rem;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
-  opacity: 0; transform: translateY(20px);
-  animation: fadeUp .7s .15s forwards;
-}
-
-.form-top {
-  background: linear-gradient(135deg, var(--sun) 0%, #F5B830 100%);
-  border-radius: 12px;
-  padding: 1.2rem 1.3rem;
-  margin-bottom: 1.4rem;
-  position: relative; overflow: hidden;
+/* ══ AIDES ══ */
+.section-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-light);
+  margin-bottom: 1rem;
   text-align: center;
 }
-.form-top::after {
-  content: '☀'; position: absolute;
-  right: -6px; top: -10px;
-  font-size: 65px; opacity: .13; line-height: 1;
+
+.aides-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  text-align: left;
 }
-.form-top-label {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: rgba(65,36,2,.6); margin-bottom: 4px;
+
+.aide-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
 }
-.form-top-title {
+.aide-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.aide-card:hover::before { opacity: 1; }
+.aide-card:hover { border-color: rgba(201,150,58,0.3); }
+
+.aide-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris-light);
+  margin-bottom: 4px;
+}
+.aide-amount {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 21px; font-weight: 600;
-  color: var(--ink); line-height: 1.2;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--noir);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
-.form-top-sub { font-size: 12px; color: rgba(65,36,2,.6); margin-top: 4px; font-weight: 300; }
-
-.form-group { margin-bottom: 0.85rem; }
-
-label {
-  display: block; font-size: 11px; font-weight: 500;
-  color: var(--ink-muted); margin-bottom: 5px;
-  letter-spacing: .03em; text-transform: uppercase;
+.aide-detail {
+  font-size: 10px;
+  color: var(--gris);
+  margin-top: 3px;
+  font-weight: 300;
+  line-height: 1.4;
 }
 
-input, select {
-  width: 100%; height: 48px;
-  background: var(--paper-warm);
+/* ══ SÉPARATEUR ══ */
+.sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+}
+.sep-line { flex: 1; height: 0.5px; background: var(--border); }
+.sep-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* ══ FORM SECTION ══ */
+.form-section {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.form-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 7vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--noir);
+  margin-bottom: 0.6rem;
+  text-align: center;
+}
+.form-headline em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.form-sub {
+  font-size: 14px;
+  color: var(--gris);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 1.8rem;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 8px 32px rgba(0,0,0,0.06),
+    0 24px 64px rgba(0,0,0,0.04);
+  text-align: left;
+}
+
+/* Ligne or en haut du form */
+.form-card::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.8rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.form-group { margin-bottom: 1rem; }
+
+.form-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="tel"],
+select {
+  width: 100%;
+  height: 50px;
+  background: var(--input-bg);
   border: 1.5px solid transparent;
   border-radius: 10px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 16px; /* 16px évite le zoom iOS */
-  color: var(--ink);
-  padding: 0 14px; outline: none;
-  transition: border-color .2s, background .2s;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--noir);
+  padding: 0 16px;
+  outline: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
   appearance: none; -webkit-appearance: none;
 }
-input::placeholder { color: var(--ink-faint); }
-input:focus, select:focus { border-color: var(--sun); background: var(--white); }
-
-.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+input::placeholder { color: var(--gris-light); }
+input:focus, select:focus {
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(201,150,58,0.1);
+}
 
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center;
-  padding-right: 36px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 10px;
+  padding-right: 40px;
+  cursor: pointer;
 }
+select option { color: var(--noir); }
 
-.radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.radio-option { position: relative; }
-.radio-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
-.radio-option label {
-  display: flex; align-items: center; justify-content: center;
+/* Radio pills */
+.radio-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { flex: 1; min-width: calc(50% - 4px); }
+.pill input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.pill label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 44px;
-  background: var(--paper-warm);
+  background: var(--input-bg);
   border: 1.5px solid transparent;
   border-radius: 10px;
-  font-size: 13px; color: var(--ink-muted);
-  cursor: pointer; transition: all .15s;
-  font-weight: 400; gap: 5px;
-  margin: 0; letter-spacing: 0; text-transform: none;
-}
-.radio-option input[type="radio"]:checked + label {
-  background: var(--sun-pale);
-  border-color: var(--sun);
-  color: var(--sun-deep); font-weight: 500;
-}
-
-.submit-btn {
-  width: 100%; height: 54px;
-  background: var(--ink); color: var(--white);
-  border: none; border-radius: 12px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 15px; font-weight: 500;
-  cursor: pointer; margin-top: 1rem;
-  transition: transform .15s, background .2s;
+  font-size: 13px;
+  color: var(--gris);
+  cursor: pointer;
+  transition: all .15s;
+  font-weight: 400;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: 0;
+  text-transform: none;
   -webkit-tap-highlight-color: transparent;
 }
-.submit-btn:active { transform: scale(0.98); background: var(--sun-deep); }
-
-.form-reassurance {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; margin-top: 10px;
-  font-size: 12px; color: var(--ink-faint);
+.pill input[type="radio"]:checked + label {
+  background: var(--noir);
+  border-color: var(--noir);
+  color: var(--white);
+  font-weight: 500;
 }
 
-.diffs {
-  display: flex; flex-direction: column; gap: 7px;
-  margin-top: 1.3rem; padding-top: 1.2rem;
-  border-top: 1px solid rgba(0,0,0,0.06);
+/* CTA */
+.cta-btn {
+  width: 100%;
+  height: 56px;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  margin-top: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .2s, transform .15s;
+  -webkit-tap-highlight-color: transparent;
 }
-.diff {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 13px; color: var(--ink-muted);
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 100%);
+  pointer-events: none;
 }
-.diff-dot {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: #EAF3DE; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: #3B6D11;
+.cta-btn:hover { background: var(--gold-deep); }
+.cta-btn:active { transform: scale(0.985); }
+
+.form-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--gris-light);
+  font-weight: 300;
+  text-align: center;
 }
 
-/* ── SUCCESS ── */
-.success-screen { display: none; text-align: center; padding: 1.5rem 0; }
-.success-icon {
-  width: 68px; height: 68px; background: var(--sun-pale);
+/* Checks sous le form */
+.form-checks {
+  margin-top: 1.6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.check-mark {
+  width: 18px; height: 18px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1rem; font-size: 30px;
+  background: #F0F7EE;
+  border: 1px solid #B8D5B4;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--success);
+  margin-top: 1px;
+  font-weight: 600;
+}
+
+/* ══ SUCCESS ══ */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+.success-ring {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  font-size: 28px;
 }
 .success-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--noir);
+  margin-bottom: 0.6rem;
 }
-.success-text { font-size: 14px; color: var(--ink-muted); line-height: 1.7; }
+.success-body {
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.success-note {
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: var(--gold-pale);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--gold-deep);
+  line-height: 1.6;
+  font-weight: 300;
+}
 
-/* ── FOOTER ── */
-.footer-note {
-  max-width: 1100px; margin: 0 auto;
-  padding: 0 1.25rem 2.5rem;
-  font-size: 10px; color: var(--ink-faint); line-height: 1.6;
+/* ══ FOOTER ══ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.8rem 1.5rem;
   text-align: center;
+  font-size: 10px;
+  color: var(--gris-light);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  font-weight: 300;
+}
+footer strong { color: var(--gris); font-weight: 400; }
+
+/* ══ ANIMATIONS ══ */
+.anim {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise .65s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.anim:nth-child(1){animation-delay:.05s}
+.anim:nth-child(2){animation-delay:.13s}
+.anim:nth-child(3){animation-delay:.21s}
+.anim:nth-child(4){animation-delay:.29s}
+.anim:nth-child(5){animation-delay:.37s}
+.anim:nth-child(6){animation-delay:.45s}
+.anim-form {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: rise .7s cubic-bezier(.22,.61,.36,1) .3s forwards;
+}
+@keyframes rise { to { opacity:1; transform:none; } }
+
+/* ══ DESKTOP ══ */
+@media (min-width: 860px) {
+  .hero { padding: 5rem 2rem 3rem; }
+  .hero-title { font-size: 80px; }
+  .aides-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .form-section { max-width: 540px; padding-bottom: 6rem; }
+  .form-card { padding: 2.4rem 2.2rem; }
 }
 
-/* ── ANIMATIONS ── */
-.fade-up {
-  opacity: 0; transform: translateY(14px);
-  animation: fadeUp .55s forwards;
-}
-.fade-up:nth-child(1){animation-delay:.05s}
-.fade-up:nth-child(2){animation-delay:.12s}
-.fade-up:nth-child(3){animation-delay:.2s}
-.fade-up:nth-child(4){animation-delay:.28s}
-.fade-up:nth-child(5){animation-delay:.36s}
-@keyframes fadeUp { to { opacity:1; transform:none; } }
-
-/* ── DESKTOP : 2 colonnes ── */
-@media (min-width: 820px) {
-  main {
-    flex-direction: row;
-    gap: 5rem;
-    padding: 2rem 2rem 4rem;
-    align-items: start;
-  }
-  .copy { flex: 1; padding-top: 1rem; }
-  .form-card { width: 420px; flex-shrink: 0; position: sticky; top: 2rem; }
-  .submit-btn:hover { background: var(--sun-deep); transform: translateY(-1px); }
-  .aide:hover { border-color: rgba(239,159,39,.4); transform: translateY(-1px); }
-  header { padding: 1.5rem 2rem; }
-  .footer-note { padding: 0 2rem 3rem; }
-}
-
-/* ── Très petits écrans ── */
+/* ══ Petits écrans ══ */
 @media (max-width: 380px) {
-  .aides { grid-template-columns: 1fr; }
-  .input-row { grid-template-columns: 1fr; }
-  .logo-tag { display: none; }
+  .hero-title { font-size: 40px; }
+  .form-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 <div class="page">
 
+  <!-- BARRE TOP -->
+  <div class="topbar">
+    <div class="topbar-dot"></div>
+    <span class="topbar-text">
+      <strong>Places limitées cette semaine</strong> — Gironde & Nouvelle-Aquitaine
+    </span>
+  </div>
+
+  <!-- HEADER -->
   <header>
-    <div style="display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;">
-      <div class="logo">aqui<span>ner</span></div>
-      <span class="logo-tag">Gironde · Nouvelle-Aquitaine</span>
+    <div class="logo">
+      AQUINER
+      <div class="logo-dot"></div>
     </div>
-    <div class="header-badge">Places limitées</div>
+    <div class="header-right">
+      <span class="header-rgе">RGE Certifié</span>
+      <span style="display:none" class="header-loc">Gironde</span>
+    </div>
   </header>
 
-  <main>
+  <!-- HERO -->
+  <section class="hero">
 
-    <!-- COPY -->
-    <div class="copy">
-
-      <div class="eyebrow fade-up">
-        <span class="eyebrow-line"></span>
-        Installateur photovoltaïque local
-        <span class="eyebrow-line"></span>
-      </div>
-
-      <h1 class="fade-up">
-        Passez au solaire<br>
-        en <em>toute confiance</em><br>
-        en Gironde
-      </h1>
-
-      <p class="lead fade-up">
-        Vous parlez directement au responsable — pas à un commercial.
-        Une équipe d'ici, qui connaît votre territoire et monte vos dossiers d'aides avec vous.
-        Travail dans les règles de l'art, garanti.
-      </p>
-
-      <div class="fade-up">
-        <p class="aides-title">Aides financières disponibles</p>
-        <div class="aides">
-          <div class="aide">
-            <div class="aide-icon">€</div>
-            <div>
-              <div class="aide-name">Éco-PTZ</div>
-              <div class="aide-amount">jusqu'à 15 000 €</div>
-              <div class="aide-desc">Prêt à taux zéro, sans intérêts</div>
-            </div>
-          </div>
-          <div class="aide">
-            <div class="aide-icon">☀</div>
-            <div>
-              <div class="aide-name">Prime autoconsommation</div>
-              <div class="aide-amount">80 à 350 €/kWc</div>
-              <div class="aide-desc">Versée sur 5 ans · RGE requis</div>
-            </div>
-          </div>
-          <div class="aide">
-            <div class="aide-icon">⌂</div>
-            <div>
-              <div class="aide-name">Bordeaux Métropole</div>
-              <div class="aide-amount">jusqu'à 2 500 €</div>
-              <div class="aide-desc">20 % du devis · 28 communes</div>
-            </div>
-          </div>
-          <div class="aide">
-            <div class="aide-icon">↺</div>
-            <div>
-              <div class="aide-name">Rachat EDF OA</div>
-              <div class="aide-amount">20 ans garantis</div>
-              <div class="aide-desc">Tarif de rachat fixe sur surplus</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROOF — vraies photos Unsplash (visages neutres, familles) -->
-      <div class="proof fade-up">
-        <div class="proof-avatars">
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
-          </div>
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
-          </div>
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
-          </div>
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
-          </div>
-          <div class="avatar">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=88&h=88&fit=crop&crop=face&auto=format" alt="Client Aquiner" loading="lazy">
-          </div>
-          <div class="avatar-count">+42</div>
-        </div>
-        <div class="proof-row">
-          <div class="proof-stars">★★★★★</div>
-          <div class="proof-text"><strong>47 familles</strong> accompagnées en Gironde</div>
-          <div class="proof-sep"></div>
-          <div class="proof-text">Réponse sous <strong>24h</strong></div>
-        </div>
-      </div>
-
+    <div class="hero-region anim">
+      <span class="hero-region-line"></span>
+      Gironde · Nouvelle-Aquitaine
+      <span class="hero-region-line"></span>
     </div>
 
-    <!-- FORMULAIRE -->
-    <div class="form-card">
-      <div id="form-content">
-        <div class="form-top">
-          <div class="form-top-label">Offre gratuite</div>
-          <div class="form-top-title">Votre visite technique<br>offerte à domicile</div>
-          <div class="form-top-sub">Sans engagement · Par un professionnel Aquiner</div>
-        </div>
+    <h1 class="hero-title anim">
+      L'énergie solaire
+      <em>à taille humaine</em>
+    </h1>
 
+    <p class="hero-sub anim">
+      Pas de commercial entre vous et nous.
+      Vous parlez directement au responsable,
+      on monte vos dossiers d'aides ensemble,
+      et on pose dans les règles de l'art.
+    </p>
+
+    <!-- PROOF -->
+    <div class="proof-block anim">
+      <div class="proof-faces">
+        <!-- 
+          ════════════════════════════════════════════════════
+          PHOTOS DE CLIENTS — ACTION REQUISE
+          ════════════════════════════════════════════════════
+          Pour afficher de vraies photos de familles françaises :
+          
+          1. Téléchargez 5 photos libres de droits sur :
+             → https://www.pexels.com/fr-fr/search/famille/
+             → https://pixabay.com/fr/images/search/famille%20française/
+          
+          2. Renommez-les : client1.jpg, client2.jpg ... client5.jpg
+          
+          3. Placez-les dans un dossier /images/ de votre projet Vercel
+          
+          4. Remplacez les src ci-dessous par : /images/client1.jpg etc.
+          
+          En attendant, des avatars stylisés sont affichés.
+          ════════════════════════════════════════════════════
+        -->
+        <div class="face" style="background:linear-gradient(135deg,#D4A76A,#8A6020);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-family:serif;">M</div>
+        <div class="face" style="background:linear-gradient(135deg,#B5C8A8,#4A7C59);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-family:serif;">S</div>
+        <div class="face" style="background:linear-gradient(135deg,#A8B8D4,#3A5A8A);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-family:serif;">P</div>
+        <div class="face" style="background:linear-gradient(135deg,#D4B8A8,#8A5A3A);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-family:serif;">C</div>
+        <div class="face" style="background:linear-gradient(135deg,#C8A8D4,#6A3A8A);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-family:serif;">A</div>
+        <div class="face-more">+42</div>
+      </div>
+      <div class="proof-meta">
+        <span class="proof-stars">★★★★★</span>
+        <span class="proof-label"><strong>47 familles</strong> accompagnées en Gironde</span>
+        <span class="proof-pipe"></span>
+        <span class="proof-label">Réponse sous <strong>24h</strong></span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- AIDES -->
+  <div style="max-width:680px;margin:0 auto;padding:0 1.5rem;">
+    <p class="section-label anim">Aides financières mobilisables</p>
+    <div class="aides-grid anim">
+      <div class="aide-card">
+        <div class="aide-label">Éco-PTZ</div>
+        <div class="aide-amount">15 000 €</div>
+        <div class="aide-detail">Prêt sans intérêts</div>
+      </div>
+      <div class="aide-card">
+        <div class="aide-label">Prime autoconso.</div>
+        <div class="aide-amount">350 €/kWc</div>
+        <div class="aide-detail">Versée sur 5 ans</div>
+      </div>
+      <div class="aide-card">
+        <div class="aide-label">Bordeaux Métropole</div>
+        <div class="aide-amount">2 500 €</div>
+        <div class="aide-detail">20 % du devis TTC</div>
+      </div>
+      <div class="aide-card">
+        <div class="aide-label">Rachat EDF OA</div>
+        <div class="aide-amount">20 ans</div>
+        <div class="aide-detail">Tarif garanti surplus</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SÉPARATEUR -->
+  <div class="sep anim" style="padding:0 1.5rem;">
+    <span class="sep-line"></span>
+    <span class="sep-diamond"></span>
+    <span class="sep-line"></span>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-section">
+
+    <h2 class="form-headline anim-form">
+      Votre visite technique<br>
+      <em>offerte à domicile</em>
+    </h2>
+    <p class="form-sub anim-form">
+      Sans engagement · Réponse sous 24 heures<br>par un responsable Aquiner, pas un call center.
+    </p>
+
+    <div class="form-card anim-form">
+      <div id="form-content">
         <form id="capture-form" novalidate>
-          <div class="input-row">
+
+          <div class="form-row">
             <div class="form-group">
-              <label for="prenom">Prénom</label>
+              <label class="form-label" for="prenom">Prénom</label>
               <input type="text" id="prenom" name="prenom" placeholder="Jean" required autocomplete="given-name">
             </div>
             <div class="form-group">
-              <label for="nom">Nom</label>
+              <label class="form-label" for="nom">Nom</label>
               <input type="text" id="nom" name="nom" placeholder="Dupont" required autocomplete="family-name">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="telephone">Téléphone</label>
+            <label class="form-label" for="telephone">Téléphone</label>
             <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" required autocomplete="tel" inputmode="tel">
           </div>
 
           <div class="form-group">
-            <label for="commune">Votre secteur</label>
+            <label class="form-label" for="commune">Votre secteur en Gironde</label>
             <select id="commune" name="commune" required>
               <option value="" disabled selected>Sélectionnez votre secteur</option>
               <option>Bordeaux et Bordeaux Métropole</option>
@@ -557,165 +802,166 @@ select {
           </div>
 
           <div class="form-group">
-            <label>Vous êtes</label>
-            <div class="radio-group">
-              <div class="radio-option">
+            <label class="form-label">Vous êtes</label>
+            <div class="radio-pills">
+              <div class="pill">
                 <input type="radio" id="prop" name="statut" value="Propriétaire" checked>
-                <label for="prop">⌂ Propriétaire</label>
+                <label for="prop">Propriétaire</label>
               </div>
-              <div class="radio-option">
+              <div class="pill">
                 <input type="radio" id="bailleur" name="statut" value="Bailleur">
-                <label for="bailleur">⚿ Bailleur</label>
+                <label for="bailleur">Bailleur</label>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label>Type de toiture</label>
-            <div class="radio-group">
-              <div class="radio-option">
+            <label class="form-label">Type de toiture</label>
+            <div class="radio-pills">
+              <div class="pill">
                 <input type="radio" id="tuiles" name="toiture" value="Tuiles" checked>
                 <label for="tuiles">Tuiles</label>
               </div>
-              <div class="radio-option">
+              <div class="pill">
                 <input type="radio" id="ardoise" name="toiture" value="Ardoise">
                 <label for="ardoise">Ardoise</label>
               </div>
-              <div class="radio-option">
+              <div class="pill">
                 <input type="radio" id="bac" name="toiture" value="Bac acier">
                 <label for="bac">Bac acier</label>
               </div>
-              <div class="radio-option">
+              <div class="pill">
                 <input type="radio" id="autre-toit" name="toiture" value="Autre">
                 <label for="autre-toit">Autre</label>
               </div>
             </div>
           </div>
 
-          <button type="submit" class="submit-btn" id="submit-btn">
-            Je veux ma visite technique offerte →
+          <button type="submit" class="cta-btn" id="submit-btn">
+            Obtenir ma visite technique offerte →
           </button>
+
         </form>
 
-        <div class="form-reassurance">
-          <svg width="11" height="13" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x=".5" y="5.5" width="11" height="8" rx="1.5" stroke="#B4B2A9"/>
-            <path d="M3 5V4a3 3 0 016 0v1" stroke="#B4B2A9" stroke-linecap="round"/>
+        <div class="form-trust">
+          <svg width="11" height="13" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;opacity:.5">
+            <rect x=".5" y="5.5" width="11" height="8" rx="1.5" stroke="#6B6B6B"/>
+            <path d="M3 5V4a3 3 0 016 0v1" stroke="#6B6B6B" stroke-linecap="round"/>
           </svg>
           Aucun démarchage · Données confidentielles
         </div>
 
-        <div class="diffs">
-          <div class="diff"><div class="diff-dot">✓</div>Vous parlez directement au responsable, pas à un commercial</div>
-          <div class="diff"><div class="diff-dot">✓</div>On monte vos dossiers d'aides avec vous — gratuitement</div>
-          <div class="diff"><div class="diff-dot">✓</div>Artisans locaux certifiés RGE, travail dans les règles de l'art</div>
+        <div class="form-checks">
+          <div class="form-check">
+            <div class="check-mark">✓</div>
+            <span>Vous parlez directement au responsable, sans intermédiaire commercial</span>
+          </div>
+          <div class="form-check">
+            <div class="check-mark">✓</div>
+            <span>On identifie et monte vos dossiers d'aides avec vous — gratuitement</span>
+          </div>
+          <div class="form-check">
+            <div class="check-mark">✓</div>
+            <span>Artisans locaux certifiés RGE · pose dans les règles de l'art, garantie</span>
+          </div>
         </div>
       </div>
 
       <!-- SUCCESS -->
       <div class="success-screen" id="success-screen">
-        <div class="success-icon">☀</div>
-        <div class="success-title">C'est noté, merci !</div>
-        <p class="success-text">
+        <div class="success-ring">☀</div>
+        <div class="success-title">Demande reçue.</div>
+        <p class="success-body">
           Un responsable Aquiner vous contacte<br>
-          <strong>sous 24 heures</strong> pour organiser<br>
-          votre visite technique gratuite.
+          <strong>dans les 24 heures</strong> pour organiser<br>
+          votre visite technique à domicile.
         </p>
-        <div style="margin-top:1.3rem;padding:1rem;background:var(--sun-pale);border-radius:12px;font-size:13px;color:var(--sun-deep);line-height:1.6;">
-          En attendant, préparez une photo de votre toiture — cela nous permettra de préparer votre étude avant la visite.
+        <div class="success-note">
+          En attendant, préparez une photo de votre toiture — cela nous permettra de préparer votre étude avant même d'arriver.
         </div>
       </div>
     </div>
 
-  </main>
+  </div>
 
-  <footer class="footer-note">
-    Aquiner · Installateur photovoltaïque en Gironde, Nouvelle-Aquitaine · Certifié RGE ·
-    Les montants des aides sont indicatifs et soumis à conditions d'éligibilité.
-    Visite technique offerte sans engagement sous réserve de disponibilité.
+  <!-- FOOTER -->
+  <footer>
+    <strong>Aquiner</strong> · Installateur photovoltaïque en Gironde, Nouvelle-Aquitaine<br>
+    Certifié RGE · Les montants des aides sont indicatifs et soumis à éligibilité<br>
+    Visite technique offerte sans engagement, sous réserve de disponibilité
   </footer>
 
 </div>
 
 <script>
-// Notifications email via Make.com → Resend
-
-// Webhook Make.com → Resend (clé API côté serveur, jamais exposée)
-const MAKE_WEBHOOK = 'https://hook.eu1.make.com/uf4xe5h37p8wl14tb69mcktgp2ra6no4';
-
+// ── Vercel Function → Resend ──
 async function envoyerLead(data) {
   try {
-    const res = await fetch(MAKE_WEBHOOK, {
+    const res = await fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prenom:    data.prenom,
-        nom:       data.nom,
-        telephone: data.telephone,
-        commune:   data.commune,
-        statut:    data.statut,
-        toiture:   data.toiture,
-        date:      new Date().toLocaleString('fr-FR'),
-        destinataire: 'c.steffenwilfried@gmail.com'
-      })
+      body: JSON.stringify(data)
     });
-    if (!res.ok) console.warn('Make webhook error:', await res.text());
-  } catch(err) {
-    console.warn('Email non envoyé (silencieux):', err);
+    if (!res.ok) console.warn('API error:', await res.text());
+  } catch(e) {
+    console.warn('Email silencieux:', e);
   }
 }
 
-function firePixelLead() {
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-}
-
+// ── Soumission formulaire ──
 document.getElementById('capture-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const btn = document.getElementById('submit-btn');
-  const prenom = document.getElementById('prenom').value.trim();
-  const nom    = document.getElementById('nom').value.trim();
-  const tel    = document.getElementById('telephone').value.trim();
-  const commune = document.getElementById('commune').value;
-  const statut  = document.querySelector('input[name="statut"]:checked')?.value || '';
-  const toiture = document.querySelector('input[name="toiture"]:checked')?.value || '';
+  const btn      = document.getElementById('submit-btn');
+  const prenom   = document.getElementById('prenom').value.trim();
+  const nom      = document.getElementById('nom').value.trim();
+  const tel      = document.getElementById('telephone').value.trim();
+  const commune  = document.getElementById('commune').value;
+  const statut   = document.querySelector('input[name="statut"]:checked')?.value || '';
+  const toiture  = document.querySelector('input[name="toiture"]:checked')?.value || '';
 
-  const manquants = [
+  // Validation
+  const invalids = [
     !prenom  && document.getElementById('prenom'),
     !nom     && document.getElementById('nom'),
     !tel     && document.getElementById('telephone'),
     !commune && document.getElementById('commune'),
   ].filter(Boolean);
 
-  if (manquants.length) {
-    manquants.forEach(el => {
-      el.style.borderColor = '#E24B4A';
-      el.style.background  = '#FFF5F5';
+  if (invalids.length) {
+    invalids.forEach(el => {
+      el.style.borderColor = '#C0392B';
+      el.style.boxShadow   = '0 0 0 3px rgba(192,57,43,0.12)';
       el.addEventListener('input', () => {
         el.style.borderColor = '';
-        el.style.background  = '';
+        el.style.boxShadow   = '';
       }, { once: true });
     });
-    manquants[0].focus();
+    invalids[0].focus();
     return;
   }
 
+  // Envoi
   btn.textContent = 'Envoi en cours…';
-  btn.style.opacity = '0.65';
+  btn.style.opacity = '0.6';
   btn.disabled = true;
 
   await envoyerLead({ prenom, nom, telephone: tel, commune, statut, toiture });
-  firePixelLead();
 
+  // Pixel
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+  // Succès
   document.getElementById('form-content').style.display = 'none';
   const s = document.getElementById('success-screen');
   s.style.display = 'block';
-  s.style.opacity = 0;
-  s.style.transform = 'translateY(10px)';
-  s.style.transition = 'all .4s ease';
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => { s.style.opacity = 1; s.style.transform = 'none'; });
-  });
+  s.style.opacity = '0';
+  s.style.transition = 'opacity .5s ease, transform .5s ease';
+  s.style.transform = 'translateY(12px)';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    s.style.opacity = '1';
+    s.style.transform = 'none';
+  }));
 });
 </script>
 </body>
